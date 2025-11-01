@@ -2,7 +2,9 @@ use std::ops::RangeInclusive;
 
 use egui::{Color32, Pos2, Response, Vec2, Vec2b, epaint::Hsva};
 
-use crate::{BoundsModification, PlotBounds, PlotItem, PlotPoint, PlotTransform};
+use crate::{
+    items::Span, BoundsModification, PlotBounds, PlotItem, PlotPoint, PlotTransform,
+};
 
 #[expect(unused_imports)] // for links in docstrings
 use crate::Plot;
@@ -255,5 +257,10 @@ impl<'a> PlotUi<'a> {
             chart = chart.color(self.auto_color());
         }
         self.items.push(Box::new(chart));
+    }
+
+    /// Add a span.
+    pub fn span(&mut self, span: Span) {
+        self.items.push(Box::new(span));
     }
 }
